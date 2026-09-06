@@ -79,7 +79,9 @@ export default function TerrainViewer() {
 
     async function build() {
       try {
-        const response = await fetch('/japan-data.json');
+        const response = await fetch(
+          new URL('japan-data.json', document.baseURI),
+        );
         if (!response.ok) throw new Error('地形データを読み込めませんでした');
         const data = await response.json() as TerrainData;
         if (cancelled || !stage) return;
